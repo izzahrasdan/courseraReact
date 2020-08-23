@@ -58,7 +58,7 @@ import { Link } from "react-router-dom";
                         <hr />
                     </div>
                 </div>
-                <div className="row">
+                <div className="row row-content">
                         <RenderDish dish={props.dish} />
                         <RenderComments comments={props.comments} />
                 </div>
