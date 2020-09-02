@@ -22,7 +22,7 @@ import { Control, LocalForm, Errors } from "react-redux-form";
         { return(<div></div>); }
     }
 
-    function RenderComments({comments}){
+    function RenderComments({comments, addComment, dishId}){
         if(comments != null){
                        const commentDetail = comments.map((comment) => {
                             return(
@@ -40,7 +40,7 @@ import { Control, LocalForm, Errors } from "react-redux-form";
                            <div  className="col-12 col-md-5 m-1">
                                <h4>Comments</h4>
                                {commentDetail}
-                               <CommentForm />
+                               <CommentForm dishId={dishId} addComment={addComment} />
                            </div>
                        );
         }
@@ -62,7 +62,11 @@ import { Control, LocalForm, Errors } from "react-redux-form";
                 </div>
                 <div className="row row-content">
                         <RenderDish dish={props.dish} />
-                        <RenderComments comments={props.comments} />
+                        <RenderComments
+                            comments={props.comments}
+                            addComment={props.addComment}
+                            dishId={props.dish.id}
+                        />
                 </div>
             </div>
         );
@@ -77,7 +81,7 @@ import { Control, LocalForm, Errors } from "react-redux-form";
             super(props);
 
             this.state = {
-                isCommentopen: false
+                isCommentOpen: false
             };
             this.toggleComment = this.toggleComment.bind(this);
             this.handleComment = this.handleComment.bind(this);
@@ -91,8 +95,8 @@ import { Control, LocalForm, Errors } from "react-redux-form";
         }
 
         handleComment(values) {
-            console.log('Current State is: ' + JSON.stringify(values));
-            alert('Current State is: ' + JSON.stringify(values));
+            this.toggleComment();
+            this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
         }
 
         render() {
