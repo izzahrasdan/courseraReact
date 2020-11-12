@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/confusionn.iml" filepath="$PROJECT_DIR$/.idea/confusionn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../json-server/.idea/json-server.iml" filepath="$PROJECT_DIR$/../json-server/.idea/json-server.iml" />
     </modules>
   </component>
 </project>
