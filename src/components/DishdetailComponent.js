@@ -4,18 +4,21 @@ import { Link } from "react-router-dom";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Loading } from './LoadingComponent';
 import { baseUrl } from "../shared/baseUrl";
+import { FadeTransform, Stagger, Fade } from "react-animation-components";
 
 //user define components always starts with a capital letter
     function RenderDish({dish}){
             return (
                 <div className="col-12 col-md-5 m-1">
-                    <Card>
-                        <CardImg top src={baseUrl + dish.image} alt={dish.name}/>
-                        <CardBody>
-                            <CardTitle>{dish.name}</CardTitle>
-                            <CardText>{dish.description}</CardText>
-                        </CardBody>
-                    </Card>
+                    <FadeTransform in TransformProps={{exitTransform: 'scale(0.5) translateY(-50%)'}}>
+                        <Card>
+                            <CardImg top src={baseUrl + dish.image} alt={dish.name}/>
+                            <CardBody>
+                                <CardTitle>{dish.name}</CardTitle>
+                                <CardText>{dish.description}</CardText>
+                            </CardBody>
+                        </Card>
+                    </FadeTransform>
                 </div>
             );
     }
@@ -25,12 +28,16 @@ import { baseUrl } from "../shared/baseUrl";
                        const commentDetail = comments.map((comment) => {
                             return(
                                 <ul className="list-unstyled">
-                                    <li>
-                                        <p>{comment.comment}</p>
-                                    </li>
-                                    <li>
-                                        <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
-                                    </li>
+                                    <Stagger in>
+                                        <Fade in>
+                                            <li>
+                                                <p>{comment.comment}</p>
+                                            </li>
+                                            <li>
+                                                <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                                            </li>
+                                        </Fade>
+                                    </Stagger>
                                 </ul>
                             );
                         });
