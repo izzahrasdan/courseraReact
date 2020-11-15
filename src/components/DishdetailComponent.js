@@ -10,7 +10,7 @@ import { FadeTransform, Stagger, Fade } from "react-animation-components";
     function RenderDish({dish}){
             return (
                 <div className="col-12 col-md-5 m-1">
-                    <FadeTransform in TransformProps={{exitTransform: 'scale(0.5) translateY(-50%)'}}>
+                    <FadeTransform in transformProps={{exitTransform: 'scale(0.5) translateY(-50%)'}}>
                         <Card>
                             <CardImg top src={baseUrl + dish.image} alt={dish.name}/>
                             <CardBody>
